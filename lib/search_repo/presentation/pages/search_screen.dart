@@ -17,7 +17,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen>{
 
   late List<User> users = [];
   TextEditingController searchController = TextEditingController();
-  bool isLoading = false;
+  bool isLoading = true;
   bool isClicked = false;
   FocusNode myFocus = FocusNode();
 
@@ -25,15 +25,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen>{
   Widget build(BuildContext context) {
     final gitUserHandler = ref.read(gitUserProvider.notifier);
     users = ref.watch(gitUserProvider).users;
-    if(users.isNotEmpty) {
-      setState(() {
-        isLoading = false;
-      });
-    } else if(users.isEmpty && isClicked) {
-      setState(() {
-        isLoading = false;
-      });
-    }
+    isLoading = ref.watch(gitUserProvider).isListLoading;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -77,7 +69,7 @@ class _SearchScreenState extends ConsumerState<SearchScreen>{
                 User user = users[index];
                 return ListCard(user: user, index: index);
               },
-            ) : (isLoading) ? const Center(child: CircularProgressIndicator()) :
+            ) : (isLoading && isClicked) ? const Center(child: CircularProgressIndicator()) :
             Center(child: Text("Search a repo...",
               style: Theme.of(context)
                   .textTheme

@@ -22,7 +22,8 @@ GitState _$GitStateFromJson(Map<String, dynamic> json) {
 mixin _$GitState {
   List<User> get users => throw _privateConstructorUsedError;
   GitUserDetail get gitUserDetail => throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
+  bool get isListLoading => throw _privateConstructorUsedError;
+  bool get isDetailLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +36,11 @@ abstract class $GitStateCopyWith<$Res> {
   factory $GitStateCopyWith(GitState value, $Res Function(GitState) then) =
       _$GitStateCopyWithImpl<$Res, GitState>;
   @useResult
-  $Res call({List<User> users, GitUserDetail gitUserDetail, bool isLoading});
+  $Res call(
+      {List<User> users,
+      GitUserDetail gitUserDetail,
+      bool isListLoading,
+      bool isDetailLoading});
 
   $GitUserDetailCopyWith<$Res> get gitUserDetail;
 }
@@ -55,7 +60,8 @@ class _$GitStateCopyWithImpl<$Res, $Val extends GitState>
   $Res call({
     Object? users = null,
     Object? gitUserDetail = null,
-    Object? isLoading = null,
+    Object? isListLoading = null,
+    Object? isDetailLoading = null,
   }) {
     return _then(_value.copyWith(
       users: null == users
@@ -66,9 +72,13 @@ class _$GitStateCopyWithImpl<$Res, $Val extends GitState>
           ? _value.gitUserDetail
           : gitUserDetail // ignore: cast_nullable_to_non_nullable
               as GitUserDetail,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isListLoading: null == isListLoading
+          ? _value.isListLoading
+          : isListLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDetailLoading: null == isDetailLoading
+          ? _value.isDetailLoading
+          : isDetailLoading // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -89,7 +99,11 @@ abstract class _$$_GitStateCopyWith<$Res> implements $GitStateCopyWith<$Res> {
       __$$_GitStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<User> users, GitUserDetail gitUserDetail, bool isLoading});
+  $Res call(
+      {List<User> users,
+      GitUserDetail gitUserDetail,
+      bool isListLoading,
+      bool isDetailLoading});
 
   @override
   $GitUserDetailCopyWith<$Res> get gitUserDetail;
@@ -108,7 +122,8 @@ class __$$_GitStateCopyWithImpl<$Res>
   $Res call({
     Object? users = null,
     Object? gitUserDetail = null,
-    Object? isLoading = null,
+    Object? isListLoading = null,
+    Object? isDetailLoading = null,
   }) {
     return _then(_$_GitState(
       users: null == users
@@ -119,9 +134,13 @@ class __$$_GitStateCopyWithImpl<$Res>
           ? _value.gitUserDetail
           : gitUserDetail // ignore: cast_nullable_to_non_nullable
               as GitUserDetail,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      isListLoading: null == isListLoading
+          ? _value.isListLoading
+          : isListLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDetailLoading: null == isDetailLoading
+          ? _value.isDetailLoading
+          : isDetailLoading // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -133,7 +152,8 @@ class _$_GitState implements _GitState {
   _$_GitState(
       {final List<User> users = const [],
       this.gitUserDetail = const GitUserDetail(),
-      this.isLoading = true})
+      this.isListLoading = true,
+      this.isDetailLoading = true})
       : _users = users;
 
   factory _$_GitState.fromJson(Map<String, dynamic> json) =>
@@ -153,11 +173,14 @@ class _$_GitState implements _GitState {
   final GitUserDetail gitUserDetail;
   @override
   @JsonKey()
-  final bool isLoading;
+  final bool isListLoading;
+  @override
+  @JsonKey()
+  final bool isDetailLoading;
 
   @override
   String toString() {
-    return 'GitState(users: $users, gitUserDetail: $gitUserDetail, isLoading: $isLoading)';
+    return 'GitState(users: $users, gitUserDetail: $gitUserDetail, isListLoading: $isListLoading, isDetailLoading: $isDetailLoading)';
   }
 
   @override
@@ -168,14 +191,20 @@ class _$_GitState implements _GitState {
             const DeepCollectionEquality().equals(other._users, _users) &&
             (identical(other.gitUserDetail, gitUserDetail) ||
                 other.gitUserDetail == gitUserDetail) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+            (identical(other.isListLoading, isListLoading) ||
+                other.isListLoading == isListLoading) &&
+            (identical(other.isDetailLoading, isDetailLoading) ||
+                other.isDetailLoading == isDetailLoading));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_users), gitUserDetail, isLoading);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_users),
+      gitUserDetail,
+      isListLoading,
+      isDetailLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -195,7 +224,8 @@ abstract class _GitState implements GitState {
   factory _GitState(
       {final List<User> users,
       final GitUserDetail gitUserDetail,
-      final bool isLoading}) = _$_GitState;
+      final bool isListLoading,
+      final bool isDetailLoading}) = _$_GitState;
 
   factory _GitState.fromJson(Map<String, dynamic> json) = _$_GitState.fromJson;
 
@@ -204,7 +234,9 @@ abstract class _GitState implements GitState {
   @override
   GitUserDetail get gitUserDetail;
   @override
-  bool get isLoading;
+  bool get isListLoading;
+  @override
+  bool get isDetailLoading;
   @override
   @JsonKey(ignore: true)
   _$$_GitStateCopyWith<_$_GitState> get copyWith =>

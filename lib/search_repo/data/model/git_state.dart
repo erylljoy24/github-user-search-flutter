@@ -9,7 +9,8 @@ class GitState with _$GitState {
   factory GitState({
     @Default([]) List<User> users,
     @Default(GitUserDetail()) GitUserDetail gitUserDetail,
-    @Default(true) bool isLoading,
+    @Default(true) bool isListLoading,
+    @Default(true) bool isDetailLoading,
   }) = _GitState;
 
   factory GitState.fromJson(Map<String, dynamic> json) =>

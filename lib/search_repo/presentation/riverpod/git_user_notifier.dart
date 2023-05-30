@@ -8,19 +8,20 @@ class GitUserNotifier extends StateNotifier<GitState> {
 
   Future<void> fetchRepo(String name) async {
     final response = await httpService.getRequest(name);
+    state = state.copyWith(isListLoading: true);
     if(response != null) {
       final List list = response['items'];
       List<User> user = list.map((e) => User.fromJson(e)).toList();
-      state = state.copyWith(users: user);
+      state = state.copyWith(users: user, isListLoading: false);
     }
   }
 
   Future<void> fetchUserDetail(String name) async {
     final response = await httpService.getUserRequest(name);
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(isDetailLoading: true);
     if(response != null) {
       GitUserDetail userDetail = GitUserDetail.fromJson(response);
-      state = state.copyWith(gitUserDetail: userDetail, isLoading: false);
+      state = state.copyWith(gitUserDetail: userDetail, isDetailLoading: false);
     }
   }
 }

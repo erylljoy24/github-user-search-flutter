@@ -35,7 +35,7 @@ class _GitRepoDetailState extends ConsumerState<GitRepoDetail> {
   @override
   Widget build(BuildContext context) {
     userDetail = ref.watch(gitUserProvider).gitUserDetail;
-    isLoading = ref.watch(gitUserProvider).isLoading;
+    isLoading = ref.watch(gitUserProvider).isDetailLoading;
     return Scaffold(
       body: Column(
         children: [
