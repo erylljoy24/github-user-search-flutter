@@ -23,7 +23,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       name: json['login'] as String?,
       avatar: json['avatar_url'] as String?,
       type: json['type'] as String?,
-      score: json['score'] as int?,
+      score: json['score'] as double?,
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -40,9 +40,11 @@ _$_GitUserDetail _$$_GitUserDetailFromJson(Map<String, dynamic> json) => _$_GitU
       avatar: json['avatar_url'] as String?,
       company: json['company'] as String?,
       email: json['email'] as String?,
+      realName: json['name'] as String?,
       followers: json['followers'] as int?,
       location: json['location'] as String?,
-      createdAt: json['created_at'] as String?,
+      createdAt: DateUtil.dynamicTimestampToDateTime(json['created_at']),
+      updateAt: DateUtil.dynamicTimestampToDateTime(json['updated_at']),
     );
 
 Map<String, dynamic> _$$_GitUserDetailToJson(_$_GitUserDetail instance) => <String, dynamic>{
@@ -54,4 +56,5 @@ Map<String, dynamic> _$$_GitUserDetailToJson(_$_GitUserDetail instance) => <Stri
       'followers': instance.followers,
       'location': instance.location,
       'created_at': instance.createdAt,
+      'updated_at': instance.updateAt,
     };

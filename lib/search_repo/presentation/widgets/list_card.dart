@@ -59,7 +59,7 @@ class ListCard extends StatelessWidget{
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Name: ${user.name!}',
+                      'User Name: ${user.name!}',
                       style: const TextStyle(
                           fontSize: 18,
                           color: Colors.black45

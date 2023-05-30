@@ -22,6 +22,7 @@ GitState _$GitStateFromJson(Map<String, dynamic> json) {
 mixin _$GitState {
   List<User> get users => throw _privateConstructorUsedError;
   GitUserDetail get gitUserDetail => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $GitStateCopyWith<$Res> {
   factory $GitStateCopyWith(GitState value, $Res Function(GitState) then) =
       _$GitStateCopyWithImpl<$Res, GitState>;
   @useResult
-  $Res call({List<User> users, GitUserDetail gitUserDetail});
+  $Res call({List<User> users, GitUserDetail gitUserDetail, bool isLoading});
 
   $GitUserDetailCopyWith<$Res> get gitUserDetail;
 }
@@ -54,6 +55,7 @@ class _$GitStateCopyWithImpl<$Res, $Val extends GitState>
   $Res call({
     Object? users = null,
     Object? gitUserDetail = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
       users: null == users
@@ -64,6 +66,10 @@ class _$GitStateCopyWithImpl<$Res, $Val extends GitState>
           ? _value.gitUserDetail
           : gitUserDetail // ignore: cast_nullable_to_non_nullable
               as GitUserDetail,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -83,7 +89,7 @@ abstract class _$$_GitStateCopyWith<$Res> implements $GitStateCopyWith<$Res> {
       __$$_GitStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<User> users, GitUserDetail gitUserDetail});
+  $Res call({List<User> users, GitUserDetail gitUserDetail, bool isLoading});
 
   @override
   $GitUserDetailCopyWith<$Res> get gitUserDetail;
@@ -102,6 +108,7 @@ class __$$_GitStateCopyWithImpl<$Res>
   $Res call({
     Object? users = null,
     Object? gitUserDetail = null,
+    Object? isLoading = null,
   }) {
     return _then(_$_GitState(
       users: null == users
@@ -112,6 +119,10 @@ class __$$_GitStateCopyWithImpl<$Res>
           ? _value.gitUserDetail
           : gitUserDetail // ignore: cast_nullable_to_non_nullable
               as GitUserDetail,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -121,7 +132,8 @@ class __$$_GitStateCopyWithImpl<$Res>
 class _$_GitState implements _GitState {
   _$_GitState(
       {final List<User> users = const [],
-      this.gitUserDetail = const GitUserDetail()})
+      this.gitUserDetail = const GitUserDetail(),
+      this.isLoading = true})
       : _users = users;
 
   factory _$_GitState.fromJson(Map<String, dynamic> json) =>
@@ -139,10 +151,13 @@ class _$_GitState implements _GitState {
   @override
   @JsonKey()
   final GitUserDetail gitUserDetail;
+  @override
+  @JsonKey()
+  final bool isLoading;
 
   @override
   String toString() {
-    return 'GitState(users: $users, gitUserDetail: $gitUserDetail)';
+    return 'GitState(users: $users, gitUserDetail: $gitUserDetail, isLoading: $isLoading)';
   }
 
   @override
@@ -152,13 +167,15 @@ class _$_GitState implements _GitState {
             other is _$_GitState &&
             const DeepCollectionEquality().equals(other._users, _users) &&
             (identical(other.gitUserDetail, gitUserDetail) ||
-                other.gitUserDetail == gitUserDetail));
+                other.gitUserDetail == gitUserDetail) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_users), gitUserDetail);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_users), gitUserDetail, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -177,7 +194,8 @@ class _$_GitState implements _GitState {
 abstract class _GitState implements GitState {
   factory _GitState(
       {final List<User> users,
-      final GitUserDetail gitUserDetail}) = _$_GitState;
+      final GitUserDetail gitUserDetail,
+      final bool isLoading}) = _$_GitState;
 
   factory _GitState.fromJson(Map<String, dynamic> json) = _$_GitState.fromJson;
 
@@ -185,6 +203,8 @@ abstract class _GitState implements GitState {
   List<User> get users;
   @override
   GitUserDetail get gitUserDetail;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$_GitStateCopyWith<_$_GitState> get copyWith =>
@@ -206,7 +226,7 @@ mixin _$User {
   @JsonKey(name: 'type')
   String? get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'score')
-  int? get score => throw _privateConstructorUsedError;
+  double? get score => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -223,7 +243,7 @@ abstract class $UserCopyWith<$Res> {
       @JsonKey(name: 'login') String? name,
       @JsonKey(name: 'avatar_url') String? avatar,
       @JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'score') int? score});
+      @JsonKey(name: 'score') double? score});
 }
 
 /// @nodoc
@@ -265,7 +285,7 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ) as $Val);
   }
 }
@@ -281,7 +301,7 @@ abstract class _$$_UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       @JsonKey(name: 'login') String? name,
       @JsonKey(name: 'avatar_url') String? avatar,
       @JsonKey(name: 'type') String? type,
-      @JsonKey(name: 'score') int? score});
+      @JsonKey(name: 'score') double? score});
 }
 
 /// @nodoc
@@ -319,7 +339,7 @@ class __$$_UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res, _$_User>
       score: freezed == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -350,7 +370,7 @@ class _$_User implements _User {
   final String? type;
   @override
   @JsonKey(name: 'score')
-  final int? score;
+  final double? score;
 
   @override
   String toString() {
@@ -393,7 +413,7 @@ abstract class _User implements User {
       @JsonKey(name: 'login') final String? name,
       @JsonKey(name: 'avatar_url') final String? avatar,
       @JsonKey(name: 'type') final String? type,
-      @JsonKey(name: 'score') final int? score}) = _$_User;
+      @JsonKey(name: 'score') final double? score}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -411,7 +431,7 @@ abstract class _User implements User {
   String? get type;
   @override
   @JsonKey(name: 'score')
-  int? get score;
+  double? get score;
   @override
   @JsonKey(ignore: true)
   _$$_UserCopyWith<_$_User> get copyWith => throw _privateConstructorUsedError;
@@ -427,6 +447,8 @@ mixin _$GitUserDetail {
   int? get repos => throw _privateConstructorUsedError;
   @JsonKey(name: 'login')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'name')
+  String? get realName => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar_url')
   String? get avatar => throw _privateConstructorUsedError;
   @JsonKey(name: 'company')
@@ -439,6 +461,8 @@ mixin _$GitUserDetail {
   String? get location => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   String? get createdAt => throw _privateConstructorUsedError;
+  @JsonKey(name: 'updated_at')
+  String? get updateAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -455,12 +479,14 @@ abstract class $GitUserDetailCopyWith<$Res> {
   $Res call(
       {@JsonKey(name: 'public_repos') int? repos,
       @JsonKey(name: 'login') String? name,
+      @JsonKey(name: 'name') String? realName,
       @JsonKey(name: 'avatar_url') String? avatar,
       @JsonKey(name: 'company') String? company,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'followers') int? followers,
       @JsonKey(name: 'location') String? location,
-      @JsonKey(name: 'created_at') String? createdAt});
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updateAt});
 }
 
 /// @nodoc
@@ -478,12 +504,14 @@ class _$GitUserDetailCopyWithImpl<$Res, $Val extends GitUserDetail>
   $Res call({
     Object? repos = freezed,
     Object? name = freezed,
+    Object? realName = freezed,
     Object? avatar = freezed,
     Object? company = freezed,
     Object? email = freezed,
     Object? followers = freezed,
     Object? location = freezed,
     Object? createdAt = freezed,
+    Object? updateAt = freezed,
   }) {
     return _then(_value.copyWith(
       repos: freezed == repos
@@ -493,6 +521,10 @@ class _$GitUserDetailCopyWithImpl<$Res, $Val extends GitUserDetail>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      realName: freezed == realName
+          ? _value.realName
+          : realName // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -517,6 +549,10 @@ class _$GitUserDetailCopyWithImpl<$Res, $Val extends GitUserDetail>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
+              as String?,
+      updateAt: freezed == updateAt
+          ? _value.updateAt
+          : updateAt // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -533,12 +569,14 @@ abstract class _$$_GitUserDetailCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'public_repos') int? repos,
       @JsonKey(name: 'login') String? name,
+      @JsonKey(name: 'name') String? realName,
       @JsonKey(name: 'avatar_url') String? avatar,
       @JsonKey(name: 'company') String? company,
       @JsonKey(name: 'email') String? email,
       @JsonKey(name: 'followers') int? followers,
       @JsonKey(name: 'location') String? location,
-      @JsonKey(name: 'created_at') String? createdAt});
+      @JsonKey(name: 'created_at') String? createdAt,
+      @JsonKey(name: 'updated_at') String? updateAt});
 }
 
 /// @nodoc
@@ -554,12 +592,14 @@ class __$$_GitUserDetailCopyWithImpl<$Res>
   $Res call({
     Object? repos = freezed,
     Object? name = freezed,
+    Object? realName = freezed,
     Object? avatar = freezed,
     Object? company = freezed,
     Object? email = freezed,
     Object? followers = freezed,
     Object? location = freezed,
     Object? createdAt = freezed,
+    Object? updateAt = freezed,
   }) {
     return _then(_$_GitUserDetail(
       repos: freezed == repos
@@ -569,6 +609,10 @@ class __$$_GitUserDetailCopyWithImpl<$Res>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      realName: freezed == realName
+          ? _value.realName
+          : realName // ignore: cast_nullable_to_non_nullable
               as String?,
       avatar: freezed == avatar
           ? _value.avatar
@@ -594,6 +638,10 @@ class __$$_GitUserDetailCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      updateAt: freezed == updateAt
+          ? _value.updateAt
+          : updateAt // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -604,12 +652,14 @@ class _$_GitUserDetail implements _GitUserDetail {
   const _$_GitUserDetail(
       {@JsonKey(name: 'public_repos') this.repos,
       @JsonKey(name: 'login') this.name,
+      @JsonKey(name: 'name') this.realName,
       @JsonKey(name: 'avatar_url') this.avatar,
       @JsonKey(name: 'company') this.company,
       @JsonKey(name: 'email') this.email,
       @JsonKey(name: 'followers') this.followers,
       @JsonKey(name: 'location') this.location,
-      @JsonKey(name: 'created_at') this.createdAt});
+      @JsonKey(name: 'created_at') this.createdAt,
+      @JsonKey(name: 'updated_at') this.updateAt});
 
   factory _$_GitUserDetail.fromJson(Map<String, dynamic> json) =>
       _$$_GitUserDetailFromJson(json);
@@ -620,6 +670,9 @@ class _$_GitUserDetail implements _GitUserDetail {
   @override
   @JsonKey(name: 'login')
   final String? name;
+  @override
+  @JsonKey(name: 'name')
+  final String? realName;
   @override
   @JsonKey(name: 'avatar_url')
   final String? avatar;
@@ -638,10 +691,13 @@ class _$_GitUserDetail implements _GitUserDetail {
   @override
   @JsonKey(name: 'created_at')
   final String? createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  final String? updateAt;
 
   @override
   String toString() {
-    return 'GitUserDetail(repos: $repos, name: $name, avatar: $avatar, company: $company, email: $email, followers: $followers, location: $location, createdAt: $createdAt)';
+    return 'GitUserDetail(repos: $repos, name: $name, realName: $realName, avatar: $avatar, company: $company, email: $email, followers: $followers, location: $location, createdAt: $createdAt, updateAt: $updateAt)';
   }
 
   @override
@@ -651,6 +707,8 @@ class _$_GitUserDetail implements _GitUserDetail {
             other is _$_GitUserDetail &&
             (identical(other.repos, repos) || other.repos == repos) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.realName, realName) ||
+                other.realName == realName) &&
             (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.company, company) || other.company == company) &&
             (identical(other.email, email) || other.email == email) &&
@@ -659,13 +717,15 @@ class _$_GitUserDetail implements _GitUserDetail {
             (identical(other.location, location) ||
                 other.location == location) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.updateAt, updateAt) ||
+                other.updateAt == updateAt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, repos, name, avatar, company,
-      email, followers, location, createdAt);
+  int get hashCode => Object.hash(runtimeType, repos, name, realName, avatar,
+      company, email, followers, location, createdAt, updateAt);
 
   @JsonKey(ignore: true)
   @override
@@ -685,12 +745,14 @@ abstract class _GitUserDetail implements GitUserDetail {
   const factory _GitUserDetail(
       {@JsonKey(name: 'public_repos') final int? repos,
       @JsonKey(name: 'login') final String? name,
+      @JsonKey(name: 'name') final String? realName,
       @JsonKey(name: 'avatar_url') final String? avatar,
       @JsonKey(name: 'company') final String? company,
       @JsonKey(name: 'email') final String? email,
       @JsonKey(name: 'followers') final int? followers,
       @JsonKey(name: 'location') final String? location,
-      @JsonKey(name: 'created_at') final String? createdAt}) = _$_GitUserDetail;
+      @JsonKey(name: 'created_at') final String? createdAt,
+      @JsonKey(name: 'updated_at') final String? updateAt}) = _$_GitUserDetail;
 
   factory _GitUserDetail.fromJson(Map<String, dynamic> json) =
       _$_GitUserDetail.fromJson;
@@ -701,6 +763,9 @@ abstract class _GitUserDetail implements GitUserDetail {
   @override
   @JsonKey(name: 'login')
   String? get name;
+  @override
+  @JsonKey(name: 'name')
+  String? get realName;
   @override
   @JsonKey(name: 'avatar_url')
   String? get avatar;
@@ -719,6 +784,9 @@ abstract class _GitUserDetail implements GitUserDetail {
   @override
   @JsonKey(name: 'created_at')
   String? get createdAt;
+  @override
+  @JsonKey(name: 'updated_at')
+  String? get updateAt;
   @override
   @JsonKey(ignore: true)
   _$$_GitUserDetailCopyWith<_$_GitUserDetail> get copyWith =>
